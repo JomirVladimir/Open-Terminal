@@ -4,11 +4,11 @@
 #include <iostream>
 #include <string>
 
-std::string systeminfo() {
-	std::string comand;
-	SYSTEM_POWER_STATUS baterie;
-	SetConsoleOutputCP(CP_UTF8);
-	SetConsoleCP(CP_UTF8);
+std::string Systeminfo() {
+	std::string comand; // Variabil "comand" în care se stochează comamdele de la utilizatorul
+	SYSTEM_POWER_STATUS baterie; // Variabil "baterie" în care se stochează procenrul de baterie
+	SetConsoleOutputCP(CP_UTF8); // Setarea limbei română în terminal
+	SetConsoleCP(CP_UTF8);       //
 	while (comand != "exit") {
 		if (GetSystemPowerStatus(&baterie)) {																				 //
 			if (baterie.BatteryLifePercent != 225) {																		 //

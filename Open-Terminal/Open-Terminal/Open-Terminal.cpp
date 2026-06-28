@@ -3,9 +3,12 @@
 using namespace std;
 
 int main() {
-	string answer = "fm";
+	std::string comand; // Variabil "comand" în care se stochează comamdele de la utilizatorul
+	fs::path path = fs::current_path(); // Variabil "path" în care se stochează calea în care se află utilizatorul
 	do {
-		answer = ComandParser("mod", answer);
-	} while (answer != "end");
+		std::cout << "Open-Terminal " << path << "> ";
+		std::cin >> comand;
+		path = ComandParser(comand, path);
+	} while (comand != "end");
 	return 0;
 }
