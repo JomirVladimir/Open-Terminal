@@ -6,8 +6,8 @@
 namespace fs = std::filesystem; // Setarea noul numele de spațiul
 
 fs::path ChangeDirectoryKids(fs::path path_kids, fs::path path_parent) {
-	SetConsoleOutputCP(CP_UTF8); // Setarea limbei română în terminal
-	SetConsoleCP(CP_UTF8);       //
+	SetConsoleOutputCP(CP_UTF8);	// Setarea limbei română în terminal
+	SetConsoleCP(CP_UTF8);        //
 	for (fs::path dir : fs::directory_iterator(path_parent)) {
 		if (path_kids == dir.stem()) {
 			FileList(dir);

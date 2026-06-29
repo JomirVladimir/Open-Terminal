@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 
-std::string Systeminfo() {
+void Systeminfo() {
 	std::string comand; // Variabil "comand" în care se stochează comamdele de la utilizatorul
 	SYSTEM_POWER_STATUS baterie; // Variabil "baterie" în care se stochează procenrul de baterie
 	SetConsoleOutputCP(CP_UTF8); // Setarea limbei română în terminal
@@ -14,5 +14,4 @@ std::string Systeminfo() {
 			std::cout << "Procet de baterie: " << (int)baterie.BatteryLifePercent << "%" << std::endl; // Afișează procentul de baterie
 		}																															 //
 	}																																 //
-	
 }

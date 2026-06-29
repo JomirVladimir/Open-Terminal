@@ -26,7 +26,7 @@ void FileList(fs::path path) { // Funcția care lucrează cu sistemul de fișier
 			std::cout << std::left << std::setw(30) << file.stem(); // Afișează denumirea fișierului fără extensi sau denumirea directivei 
 			color("36"); // Setarea culoare textului la cyan
 			std::cout << std::setw(30) << file.extension(); // Afișează extensi al fișierului
-			color("35"); // Setarea culoare textului la violet
+			color("33"); // Setarea culoare textului la galben
 			std::cout << fs::file_size(file) << "\n"; // Afișează mărimea fișierului în byte
 		}
 		color("0");
