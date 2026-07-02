@@ -8,13 +8,15 @@ namespace fs = std::filesystem; // Setarea noul numele de spațiul
 fs::path ChangeDirectoryKids(fs::path path_kids, fs::path path_parent) {
 	SetConsoleOutputCP(CP_UTF8);	// Setarea limbei română în terminal
 	SetConsoleCP(CP_UTF8);        //
-	for (fs::path dir : fs::directory_iterator(path_parent)) {
-		if (path_kids == dir.stem()) {
-			FileList(dir);
-			return dir;
+	for (fs::directory_entry dir_file : fs::directory_iterator(path_parent)) {
+		if (dir_file.is_directory()) {
+			fs::path dir = dir_file.path();
+			if (path_kids == dir.stem()) {
+				return dir;
+			}
 		}
 	}
-	std::cout << "Directivă nu există";
+	std::cout << "Directivă nu există\n";
 	return path_parent;
 }
 
@@ -27,15 +29,19 @@ fs::path ChangeDirectory(fs::path path) {
 	SetConsoleOutputCP(CP_UTF8); // Setarea limbei română în terminal
 	SetConsoleCP(CP_UTF8);       //
 	fs::path argument;
-	std::cout << "Introduceți denumirea dirctivei: ";
-	std::cin >> argument;
-	if (argument == "..") {
-		path = ChangeDirectoryParent(path);
+	while (true) {
 		FileList(path);
-		return path;
-	}
-	else {
-		return ChangeDirectoryKids(argument, path);
+		std::cout << "Introduceți denumirea dirctivei: ";
+		std::cin >> argument;
+		if (argument == "#") {
+			break;
+		}
+		if (argument == "..") {
+			path = ChangeDirectoryParent(path);
+		}
+		else {
+			path = ChangeDirectoryKids(argument, path);
+		}
 	}
 	return path;
 }

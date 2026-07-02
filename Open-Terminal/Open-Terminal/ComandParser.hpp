@@ -9,6 +9,7 @@
 #include "FunctionChangeDirectory.hpp"
 #include"FunctionFileMaker.hpp"
 #include "FunctionDirectoryMaker.hpp"
+#include "FunctionDelet.hpp"
 
 class Comand_list { // Clasa în care se află toate comantele cu id-urile lor
 public:
@@ -21,7 +22,7 @@ public:
 };
 
 std::filesystem::path ComandParser(std::string call, std::filesystem::path path) { //Funcția care parsează comandele de la utilizatorul și returnează răpunsul de la alte funcții
-	Comand_list list({ "info", "ls", "cd", "nf", "nd"}); // Crează obiectul "list" cu clasa "Comand_list"
+	Comand_list list({ "info", "ls", "cd", "nf", "nd", "del", "path", "move"}); // Crează obiectul "list" cu clasa "Comand_list"
 	std::string answer; // Variabil "answer" în care se stochează răspunsul de la funcții
 	switch (list.ComandList[call]) { //Switch-ul principal, care indentifică comandele al cărui mod să parseze, conform id-ul
 		case 428: { Systeminfo(); break; }
@@ -29,6 +30,8 @@ std::filesystem::path ComandParser(std::string call, std::filesystem::path path)
 		case 199: { return ChangeDirectory(path); }
 		case 212: { FileMaker(path); break; }
 		case 210: { DirectoryMaker(path); break; }
+		case 309: { Delet(path); break; }
+		case 429: { std::cout << path <<"\n"; break; }
 		default: std::cout << "No found comand" << std::endl; break;
 	}
 	return path;
